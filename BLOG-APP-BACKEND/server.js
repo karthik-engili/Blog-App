@@ -12,13 +12,15 @@ config()
 //create exp app
 const app=exp()
 
+const allowedOrigins = [
+  'http://localhost:5173',
+  process.env.FRONTEND_URL
+].filter(Boolean);
+
 app.use(cors({
-   origin: [
-     'http://localhost:5173',
-     process.env.FRONTEND_URL
-   ],
-   credentials: true
- }));
+  origin: allowedOrigins,
+  credentials: true
+}));
 //cookie parer middleware
 app.use(cookieParser())
 //body parser middleware
